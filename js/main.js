@@ -1,6 +1,6 @@
 // Функция, возвращающая случайное целое число из переданного диапазона включительно
 // Подсмотрел часть решения на https://learn.javascript.ru
-const getRandomInteger = function (min, max) {
+const getRandomInteger = (min, max) => {
   if (typeof(min) !== 'number' || typeof(max) !== 'number') {
     return NaN;
   }
@@ -13,7 +13,7 @@ const getRandomInteger = function (min, max) {
 };
 
 // Функция для проверки максимальной длины строки
-const checkStringLength = function (string, maxLength) {
+const checkStringLength = (string, maxLength) => {
   if (string.length > maxLength) {
     return false;
   }
@@ -23,3 +23,23 @@ const checkStringLength = function (string, maxLength) {
 getRandomInteger(2, 4);
 
 checkStringLength('Один, два, три, четыре, пять', 10);
+
+const DESCRIPTIONS = [
+  'Наконец-то я на море!',
+  'Просто красивое место.',
+  'Горизонт завален, но фотка - огонь.',
+  'Видели ли вы такую красотищу?',
+  'Обалдеть!',
+];
+
+const createPhoto = (id) => {
+  return {
+    id: id,
+    url: `photos/${id}.jpg`,
+    description: DESCRIPTIONS[getRandomInteger(0, DESCRIPTIONS.length - 1)],
+    likes: getRandomInteger(15, 200),
+    comments: getRandomInteger(0, 200),
+  }
+};
+
+const generatePhotos = Array.from({length: 25}, (item, index) => createPhoto(index + 1));
