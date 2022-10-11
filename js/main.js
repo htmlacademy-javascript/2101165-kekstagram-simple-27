@@ -32,14 +32,14 @@ const DESCRIPTIONS = [
   'Обалдеть!',
 ];
 
-const createPhoto = (id) => {
-  return {
-    id: id,
-    url: `photos/${id}.jpg`,
-    description: DESCRIPTIONS[getRandomInteger(0, DESCRIPTIONS.length - 1)],
-    likes: getRandomInteger(15, 200),
-    comments: getRandomInteger(0, 200),
-  }
-};
+const createPhoto = (id) => ({
+  id: id,
+  url: `photos/${id}.jpg`,
+  description: DESCRIPTIONS[getRandomInteger(0, DESCRIPTIONS.length - 1)],
+  likes: getRandomInteger(15, 200),
+  comments: getRandomInteger(0, 200),
+});
 
 const generatePhotos = Array.from({length: 25}, (item, index) => createPhoto(index + 1));
+
+generatePhotos.reverse();
