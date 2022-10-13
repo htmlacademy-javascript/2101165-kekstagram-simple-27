@@ -31,15 +31,22 @@ const DESCRIPTIONS = [
   'Видели ли вы такую красотищу?',
   'Обалдеть!',
 ];
+const MIN_LIKE_INTEGER = 15;
+const MAX_LIKE_INTEGER = 200;
+const MIN_COMMENT_INTEGER = 0;
+const MAX_COMMENT_INTEGER = 200;
+const PHOTOS_COUNT = 25;
+
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const createPhoto = (id) => ({
   id: id,
   url: `photos/${id}.jpg`,
-  description: DESCRIPTIONS[getRandomInteger(0, DESCRIPTIONS.length - 1)],
-  likes: getRandomInteger(15, 200),
-  comments: getRandomInteger(0, 200),
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomInteger(MIN_LIKE_INTEGER, MAX_LIKE_INTEGER),
+  comments: getRandomInteger(MIN_COMMENT_INTEGER, MAX_COMMENT_INTEGER),
 });
 
-const generatePhotos = Array.from({length: 25}, (item, index) => createPhoto(index + 1));
+const generatePhotos = Array.from({length: PHOTOS_COUNT}, (item, index) => createPhoto(index + 1));
 
 generatePhotos.reverse();
