@@ -23,4 +23,4 @@ const createPhoto = (id) => ({
 
 const generatePhotos = Array.from({length: PHOTOS_COUNT}, (item, index) => createPhoto(index + 1));
 
-generatePhotos.reverse();
+export {generatePhotos};
