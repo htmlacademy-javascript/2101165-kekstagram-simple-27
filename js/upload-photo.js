@@ -1,32 +1,36 @@
 import {isEscapeKey} from './util.js';
 
-const uploadForm = document.querySelector('#upload-file');
-const editorWindow = document.querySelector('.img-upload__overlay');
-const body = document.querySelector('body');
-const closeButton = document.querySelector('#upload-cancel');
+const uploadForm = document.querySelector('.img-upload__form');
+const editorWindow = uploadForm.querySelector('.img-upload__overlay');
+const bodyElement = uploadForm.querySelector('body');
+const closeButton = uploadForm.querySelector('.img-upload__cancel');
+const imgUploadElement = uploadForm.querySelector('.img-upload__input');
+const commentElement = uploadForm.querySelector('.text__description');
 
 const onEditorWindowEscKeydown = (evt) => {
-    if (isEscapeKey(evt)) {
-        evt.preventDefault();
-        editorWindow.classList.add('hidden');
-        body.classList.remove('modal-open');
-    }
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    editorWindow.classList.add('hidden');
+    bodyElement.classList.remove('modal-open');
+    imgUploadElement.value = '';
+    commentElement.value = '';
+  }
 };
 
 const closeForm = () => {
-    editorWindow.classList.add('hidden');
-    body.classList.remove('modal-open');
+  editorWindow.classList.add('hidden');
+  bodyElement.classList.remove('modal-open');
+  imgUploadElement.value = '';
+  commentElement.value = '';
 
-    document.removeEventListener('keydown', onEditorWindowEscKeydown);
+  document.removeEventListener('keydown', onEditorWindowEscKeydown);
 };
 
 uploadForm.addEventListener('change', () => {
-    editorWindow.classList.remove('hidden');
-    body.classList.add('modal-open');
+  editorWindow.classList.remove('hidden');
+  bodyElement.classList.add('modal-open');
 
-    document.addEventListener('keydown', onEditorWindowEscKeydown);
+  document.addEventListener('keydown', onEditorWindowEscKeydown);
 });
 
 closeButton.addEventListener('click', closeForm);
-
-new Pristine(uploadForm);
