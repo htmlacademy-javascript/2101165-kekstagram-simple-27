@@ -1,3 +1,5 @@
 import './data.js';
 import './similar-list.js';
-import './upload-photo.js';
+import './form.js';
+import './scale.js';
+import './filter.js';
