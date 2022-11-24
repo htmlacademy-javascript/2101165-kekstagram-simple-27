@@ -3,9 +3,11 @@ import {loadPhotos} from './posted-photos.js';
 import {showAlert} from './util.js';
 import {getData} from './api.js';
 
+const failMessage = 'Не загрузились изображения с сервера, попробуйте обновить страницу.';
+
 getData(
   (photos) => loadPhotos(photos),
-  () => showAlert('Не загрузились изображения с сервера, попробуйте обновить страницу.'),
+  () => showAlert(failMessage),
 );
 
 setFormSubmit(closeModalWindow);
